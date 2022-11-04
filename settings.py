@@ -2,7 +2,7 @@ level1_map = [
 'xxx                   ',
 '                      ',
 '    x     x   x       ',
-'   xx             xxx ',
+'  p xx             xxx',
 '  xxxx  xx  x  x      ',
 'xxxxx  xxx xx  xxxxxxx']
 tile_size=64
