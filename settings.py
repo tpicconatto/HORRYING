@@ -1,11 +1,10 @@
-level1_map = {
-'                  ',
-'                  ',
-'    x     x   x   '    
-'   xx             ',
-' xxxx  xx  x  x   ',
-'xxxxx  xxx xx  xxx'
-}
+level1_map = [
+'xxx                   ',
+'                      ',
+'    x     x   x       ',
+'   xx             xxx ',
+'  xxxx  xx  x  x      ',
+'xxxxx  xxx xx  xxxxxxx']
 tile_size=64
 HEIGHT = len(level1_map) * tile_size
 WIDTH = 1200
