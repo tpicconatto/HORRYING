@@ -7,7 +7,6 @@ class Player(pygame.sprite.Sprite):
     def __init__ (self, x, y, rot):
         super().__init__()
         self.image = pygame.transform.scale(pygame.image.load('pygameImg.png'), (200,200))
-        #self.image.fill('red')
         self.rect = self.image.get_rect(center = (x,y))
         self.position = pygame.math.Vector2(x,y)
         self.rotation = rot # deg

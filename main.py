@@ -1,34 +1,31 @@
 # import the pygame module, so you can use it
 import pygame
-from settings import *
-from Blocks import Circle
 from player import Player
 from level import Level
-
 # initialize the pygame module
 
 
 pygame.init()
 
-display_width = 800
-display_height = 600
+display_width = 1200
+display_height = 900
 
 display = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption("HORRIFYING")
 
 clock = pygame.time.Clock()
 
-#level = Level(level1_map, display)
 
 player1 = Player(400, 300, 0)
 
+#draws
 def drawObj(disp, image, topleft, angle):
     # idk how this works but it does
     rotated_image = pygame.transform.rotate(image, angle)
     new_rect = rotated_image.get_rect(center = image.get_rect(topleft = topleft).center)
     disp.blit(rotated_image, new_rect)
 
-
+level1 = Level(1,display)
 
 running = True
 while running:
@@ -37,7 +34,7 @@ while running:
             running = False
 
     display.fill('black')
-
+    level1.level1()
     player1.update()
 
     # draw with proper position and rotation
