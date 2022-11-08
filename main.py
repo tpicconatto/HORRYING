@@ -1,7 +1,7 @@
 # import the pygame module, so you can use it
 import pygame
 from settings import *
-from Blocks import Tile
+from Blocks import Circle
 from level import Level
 
 # initialize the pygame module

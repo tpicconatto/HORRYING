@@ -1,10 +1,10 @@
 level1_map = [
-'xxx                   ',
+'  x                   ',
 '                      ',
 '    x     x   x       ',
-'  p xx             xxx',
-'  xxxx  xx  x  x      ',
-'xxxxx  xxx xx  xxxxxxx']
+'  p x                x',
+'      x     x  x      ',
+' x          x       xx']
 tile_size=64
 HEIGHT = len(level1_map) * tile_size
 WIDTH = 1200
