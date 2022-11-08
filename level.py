@@ -9,10 +9,11 @@ class Level:
         self.asteroidsList = []
         self.setUpLevel(level_data)
         self.camera = 0
+        self.playerReference = Player(0)
 
     #prints out the level and the player
     def setUpLevel(self,layout):
-        self.player = pygame.sprite.GroupSingle()
+        #self.playerReference = pygame.sprite.GroupSingle()
         asteroids = []
         for rowIndex, row in enumerate(layout):
             for columnIndex, column in enumerate(row):
@@ -23,13 +24,14 @@ class Level:
                     newAsteroid = Circle(self.surface,x,y)
                     asteroids.append(newAsteroid)
                 if column == 'p':
-                    playerDrawing = Player((x, y))
-                    self.player.add(playerDrawing)
+                    #playerDrawing = Player((x, y))
+                    self.playerReference = Player(pygame.math.Vector2(x,y))
         self.asteroidsList = asteroids
 
     def run(self):
         for i in range(len(self.asteroidsList)):
             self.asteroidsList[i].display()
 
-        self.player.update()
-        self.player.draw(self.surface)
+        self.playerReference.update()
+
+        #self.playerReference.draw(self.surface)
