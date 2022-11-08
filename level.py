@@ -20,7 +20,6 @@ class Level:
                 x = columnIndex * tile_size
                 y = rowIndex * tile_size
                 if column == 'x':
-                    print("add asteroid")
                     newAsteroid = Circle(self.surface,x,y)
                     asteroids.append(newAsteroid)
                 if column == 'p':
@@ -31,6 +30,7 @@ class Level:
     def run(self):
         for i in range(len(self.asteroidsList)):
             self.asteroidsList[i].display()
+            self.asteroidsList[i].update(0)
 
         self.playerReference.update()
 
