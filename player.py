@@ -49,3 +49,5 @@ class Player(pygame.sprite.Sprite):
 
         self.position.x += self.velocity.x
         self.position.y += self.velocity.y
+    def stop(self):
+        self.velocity = 0

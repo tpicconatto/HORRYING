@@ -36,6 +36,8 @@ while running:
     display.fill('black')
     level1.level1()
     player1.update()
+    while player1.position.x >= display_width-50 or player1.position.y >= display_height -50:
+        player1.stop()
 
     # draw with proper position and rotation
     drawObj(display, player1.image, player1.position, player1.rotation)
