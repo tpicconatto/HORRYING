@@ -17,8 +17,8 @@ pygame.display.set_caption("HORRIFYING")
 clock = pygame.time.Clock()
 
 
-player1 = Player1(400, 300, 0)
-player2 = Player2(300,400,0)
+player1 = Player1(700, 100, 0)
+player2 = Player2(100,700,0)
 
 #draws
 def drawObj(disp, image, topleft, angle):
@@ -39,10 +39,14 @@ while running:
     level1.level1()
     player1.update()
     player2.update()
-    if player1.position.x >= display_width-100 or player1.position.y >= display_height:
+    if player1.position.x >= display_width-100 or player1.position.y >= display_height-100:
         player1.stop()
-    if player1.position.x<= -50 or player1.position.y <=50:
+    if player1.position.x<= -50 or player1.position.y <=0:
         player1.stop()
+    if player2.position.x >= display_width-100 or player2.position.y >= display_height:
+        player2.stop()
+    if player2.position.x<= -50 or player2.position.y <= 0:
+        player2.stop()
 
     # draw with proper position and rotation
     drawObj(display, player1.image, player1.position, player1.rotation)
