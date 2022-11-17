@@ -8,7 +8,7 @@ from level import Level
 pygame.init()
 
 display_width = 1200
-display_height = 900
+display_height = 800
 
 display = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption("HORRIFYING")
@@ -38,7 +38,7 @@ while running:
     player1.update()
     while player1.position.x >= display_width-50 or player1.position.y >= display_height -50:
         player1.stop()
-    while player1.position.x<=display_width+50 or player1.position.y<=display_height +50:
+    while player1.position.x<= -50 or player1.position.y<=50:
         player1.stop()
 
     # draw with proper position and rotation
