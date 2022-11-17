@@ -8,18 +8,17 @@ class Planet():
         #self.y = y
     #def display(self):
         #self.screen.blit(self.image, new_rect)
-    def __init__(self,screen,x,y):
+    def __init__(self,screen, pos):
         super().__init__()
         self.screen = screen
-        self.x = x
-        self.y = y
+        self.position = pos
         self.size = 60
         self.width = 20
     def display(self):
-        pygame.draw.circle(self.screen, 'white',(self.x,self.y),self.size,self.width)
+        pygame.draw.circle(self.screen, 'white',(self.position.x+self.size,self.position.y+self.size),self.size,self.width)
 
     def update(self,x_shift):
-        self.x += x_shift
+        self.position.x += x_shift
 class Earth:
     def __init__(self,screen,x,y):
         super().__init__()

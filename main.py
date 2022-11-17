@@ -16,7 +16,8 @@ pygame.display.set_caption("HORRIFYING")
 clock = pygame.time.Clock()
 
 
-player1 = Player(400, 300, 0)
+level1 = Level(1,display)
+player1 = Player(600, 400, 0, level1)
 
 #draws
 def drawObj(disp, image, topleft, angle):
@@ -25,7 +26,7 @@ def drawObj(disp, image, topleft, angle):
     new_rect = rotated_image.get_rect(center = image.get_rect(topleft = topleft).center)
     disp.blit(rotated_image, new_rect)
 
-level1 = Level(1,display)
+
 
 running = True
 while running:
@@ -36,7 +37,7 @@ while running:
     display.fill('black')
     level1.level1()
     player1.update()
-    while player1.position.x >= display_width-50 or player1.position.y >= display_height -50:
+    if player1.position.x >= display_width-50 or player1.position.y >= display_height -50:
         player1.stop()
 
     # draw with proper position and rotation
