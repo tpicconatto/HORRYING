@@ -49,8 +49,8 @@ while running:
         player2.stop()
 
     # draw with proper position and rotation
-    drawObj(display, player1.image, player1.position, player1.rotation)
-    drawObj(display, player2.image, player2.position, player2.rotation)
+    drawObj(display, pygame.image.load("Assets/SpaceShip.png").convert(), player1.position, player1.rotation)
+    drawObj(display, pygame.image.load("Assets/Enemy.png").convert(), player2.position, player2.rotation)
 
     pygame.display.update()
     clock.tick(60)
