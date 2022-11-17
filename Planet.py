@@ -1,6 +1,13 @@
 import pygame
-
+from os import walk
 class Planet():
+    #def __init__(self,screen,x,y):
+        #self.image = pygame.transform.scale(pygame.image.load('pixil-frame-0(1).png'), (60, 60))
+        #self.x = x
+        #self.screen = screen
+        #self.y = y
+    #def display(self):
+        #self.screen.blit(self.image, new_rect)
     def __init__(self,screen,x,y):
         super().__init__()
         self.screen = screen
@@ -8,8 +15,6 @@ class Planet():
         self.y = y
         self.size = 60
         self.width = 20
-
-
     def display(self):
         pygame.draw.circle(self.screen, 'white',(self.x,self.y),self.size,self.width)
 
