@@ -1,6 +1,7 @@
 # import the pygame module, so you can use it
 import pygame
-from player import Player
+from player import Player1
+from player import Player2
 from level import Level
 # initialize the pygame module
 
@@ -16,7 +17,8 @@ pygame.display.set_caption("HORRIFYING")
 clock = pygame.time.Clock()
 
 
-player1 = Player(400, 300, 0)
+player1 = Player1(400, 300, 0)
+player2 = Player2(300,400,0)
 
 #draws
 def drawObj(disp, image, topleft, angle):
@@ -36,13 +38,15 @@ while running:
     display.fill('black')
     level1.level1()
     player1.update()
-    while player1.position.x >= display_width-50 or player1.position.y >= display_height -50:
+    player2.update()
+    if player1.position.x >= display_width-100 or player1.position.y >= display_height:
         player1.stop()
-    while player1.position.x<= -50 or player1.position.y<=50:
+    if player1.position.x<= -50 or player1.position.y <=50:
         player1.stop()
 
     # draw with proper position and rotation
     drawObj(display, player1.image, player1.position, player1.rotation)
+    drawObj(display, player2.image, player2.position, player2.rotation)
 
     pygame.display.update()
     clock.tick(60)
