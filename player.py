@@ -4,7 +4,6 @@ import math
 PI = 3.141592653589793238462
 GCONST = 0.000000000066743
 
-
 # 1 PIXEL = 106301.667 meters
 
 class Player(pygame.sprite.Sprite):
@@ -27,22 +26,6 @@ class Player(pygame.sprite.Sprite):
         self.thrust = 0 # input control var
 
         self.dragCoef = 1
-
-
-    def get_input(self):
-        keys = pygame.key.get_pressed()
-
-        if keys[pygame.K_RIGHT]:
-            self.rotDir = -1
-        elif keys[pygame.K_LEFT]:
-            self.rotDir = 1
-        else:
-            self.rotDir = 0
-
-        if keys[pygame.K_UP]:
-            self.thrust = 1
-        else:
-            self.thrust = 0
 
     def update(self):
         self.get_input()
@@ -89,3 +72,41 @@ class Player(pygame.sprite.Sprite):
 
     def stop(self):
         self.velocity = pygame.math.Vector2(0, 0)
+
+class Player1(Player):
+    def __init__(self,x,y,rot,levelRef):
+        super().__init__(x,y,rot,levelRef)
+    def get_input(self):
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_RIGHT]:
+            self.rotDir = -1
+        elif keys[pygame.K_LEFT]:
+            self.rotDir = 1
+        else:
+            self.rotDir = 0
+
+        if keys[pygame.K_UP]:
+            self.thrust = 1
+        else:
+            self.thrust = 0
+
+class Player2(Player):
+    def __init__(self,x,y,rot,levelRef):
+        super().__init__(x,y,rot,levelRef)
+
+
+    def get_input(self):
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_d]:
+            self.rotDir = -1
+        elif keys[pygame.K_a]:
+            self.rotDir = 1
+        else:
+            self.rotDir = 0
+
+        if keys[pygame.K_w]:
+            self.thrust = 1
+        else:
+            self.thrust = 0

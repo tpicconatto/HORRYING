@@ -11,9 +11,9 @@ class Level():
         planet1= Planet(self.screen, pygame.math.Vector2(600, 200))
         planet1.display()
         self.bodiesList.append(planet1)
-
-        #planet2 = Planet(self.screen, 500, 100)
-        #planet2.display()
+        planet2 = Planet(self.screen, pygame.math.Vector2(100, 500))
+        planet2.display()
+        self.bodiesList.append(planet2)
         #planet3 = Planet(self.screen, 500, 200)
         #planet3.display()
         #planet4 = Planet(self.screen, 1000, 500)
