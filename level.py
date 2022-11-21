@@ -1,5 +1,5 @@
 from Planet import Planet
-from Planet import Earth
+#from Planet import Earth
 import pygame
 
 class Level():
@@ -7,13 +7,15 @@ class Level():
         self.number = number
         self.screen = screen
         self.bodiesList = []
+        if self.number == 1:
+            self.level1()
     def level1(self):
-        planet1= Planet(self.screen, pygame.math.Vector2(200, 200))
+        planet1= Planet(self.screen, pygame.math.Vector2(600, 400))
         planet1.display()
         self.bodiesList.append(planet1)
-        planet2 = Planet(self.screen, pygame.math.Vector2(100, 500))
-        planet2.display()
-        self.bodiesList.append(planet2)
+        #planet2 = Planet(self.screen, pygame.math.Vector2(100, 500))
+        #planet2.display()
+        #self.bodiesList.append(planet2)
         #planet3 = Planet(self.screen, 500, 200)
         #planet3.display()
         #planet4 = Planet(self.screen, 1000, 500)

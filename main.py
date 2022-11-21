@@ -17,8 +17,8 @@ pygame.display.set_caption("HORRIFYING")
 clock = pygame.time.Clock()
 
 level1 = Level(1,display)
-player1 = Player1(700, 100, 0,level1)
-player2 = Player2(100,700,0,level1)
+player1 = Player1(700, 100, 0, level1)
+player2 = Player2(100,700,0, level1)
 
 #draws
 def drawObj(disp, image, topleft, angle):

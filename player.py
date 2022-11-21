@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
 
         self.acceleration = pygame.math.Vector2(0,0)
         self.velocity = pygame.math.Vector2(0,0)
-        self.thrustAcceleration = 9 # the acceleration added by the rocket
+        self.thrustAcceleration = 18 # the acceleration added by the rocket
         self.thrust = 0 # input control var
 
         self.dragCoef = 1
@@ -42,11 +42,13 @@ class Player(pygame.sprite.Sprite):
         # accleration of gravity
         for b in self.levelReference.bodiesList:
             distVector = b.position - self.position
-            distance = distVector.length() * 106301.667 # in meters
-            if distance < 50000000:
-                accelerationOfBody = .01
-                accelVector = distVector.normalize() * accelerationOfBody
-                self.acceleration += accelVector * .005
+            distance = distVector.length() #* 106301.667 # in meters
+
+            accelerationOfBody = 3
+            accelVector = distVector.normalize() * (accelerationOfBody / math.pow(distance, .2))
+            print(accelVector)
+            self.acceleration += accelVector * .06
+
 
 
 
@@ -59,10 +61,10 @@ class Player(pygame.sprite.Sprite):
         self.velocity.x += self.acceleration.x
         self.velocity.y += self.acceleration.y
 
-        if self.velocity.length() > 7:
-            self.velocity.scale_to_length(7)
+        if self.velocity.length() > 10:
+            self.velocity.scale_to_length(10)
 
-        print(self.velocity.length())
+        #print(self.velocity.length())
 
         self.velocity *= self.dragCoef
 
