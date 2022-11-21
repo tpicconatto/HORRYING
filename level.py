@@ -8,7 +8,7 @@ class Level():
         self.screen = screen
         self.bodiesList = []
     def level1(self):
-        planet1= Planet(self.screen, pygame.math.Vector2(600, 200))
+        planet1= Planet(self.screen, pygame.math.Vector2(200, 200))
         planet1.display()
         self.bodiesList.append(planet1)
         planet2 = Planet(self.screen, pygame.math.Vector2(100, 500))
