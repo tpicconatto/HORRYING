@@ -1,5 +1,5 @@
 from Planet import Planet
-from Planet import Earth
+from Planet import SandPlanet
 import pygame
 
 class Level():
@@ -14,8 +14,8 @@ class Level():
         planet2 = Planet(self.screen, pygame.math.Vector2(100, 500))
         planet2.display()
         self.bodiesList.append(planet2)
-        #planet3 = Planet(self.screen, 500, 200)
-        #planet3.display()
+        planet3 = SandPlanet(self.screen,pygame.math.Vector2(800, 700) )
+        planet3.display()
         #planet4 = Planet(self.screen, 1000, 500)
         #planet4.display()
         #earth = Earth(self.screen,1100,700)
