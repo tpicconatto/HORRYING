@@ -75,8 +75,31 @@ while running:
     drawObj(display, player2.image, player2.position, player2.rotation)
     player1.update()
     player2.update()
-
+    if player1.collide():
+        lookingatcontrol = True
+        while lookingatcontrol:
+            keys = pygame.key.get_pressed()
+            font = pygame.font.Font('freesansbold.ttf', 32)
+            textP1 = font.render('Player 1 control: arrows', True, 'green', 'blue')
+            textP2 = font.render('Player 2 control: WASD', True, 'green', 'blue')
+            textCon = font.render('Press any key to play', True, 'green', 'blue')
+            textRectP1 = textP1.get_rect()
+            textRectP2 = textP2.get_rect()
+            textRectCon = textCon.get_rect()
+            textRectP1.center = (display_width // 2, display_height // 2)
+            textRectP2.center = (display_width // 2, display_height // 2 + 32)
+            textRectCon.center = (display_width // 2, display_height // 2 + 64)
+            display.fill('black')
+            display.blit(textP1, textRectP1)
+            display.blit(textP2, textRectP2)
+            display.blit(textCon, textRectCon)
+            pygame.display.update()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYUP:
+                    lookingatcontrol = False
     pygame.display.update()
+
     clock.tick(60)
+
 
 

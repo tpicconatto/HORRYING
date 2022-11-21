@@ -92,7 +92,10 @@ class Player1(Player):
             self.thrust = 1
         else:
             self.thrust = 0
-
+    def collide(self):
+        for b in self.levelReference.bodiesList:
+            if b.collidepoint((self.x,self.y)):
+                return True
 class Player2(Player):
     def __init__(self,x,y,rot,levelRef):
         super().__init__(x,y,rot,levelRef)
