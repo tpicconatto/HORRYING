@@ -23,7 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.acceleration = pygame.math.Vector2(0,0)
         self.velocity = pygame.math.Vector2(0,0)
         self.thrustAcceleration = 18 # the acceleration added by the rocket
-        self.thrust = 0 # input control var
+        self.thrust = 100 # input control var
 
         self.dragCoef = 1
 
@@ -92,10 +92,6 @@ class Player1(Player):
             self.thrust = 1
         else:
             self.thrust = 0
-    def collide(self):
-        for b in self.levelReference.bodiesList:
-            if b.collidepoint((self.x,self.y)):
-                return True
 class Player2(Player):
     def __init__(self,x,y,rot,levelRef):
         super().__init__(x,y,rot,levelRef)
