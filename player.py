@@ -89,7 +89,7 @@ class Player1(Player):
             self.rotDir = 0
 
         if keys[pygame.K_UP]:
-            self.thrust = 1
+            self.thrust = 20
         else:
             self.thrust = 0
 class Player2(Player):
@@ -108,6 +108,6 @@ class Player2(Player):
             self.rotDir = 0
 
         if keys[pygame.K_w]:
-            self.thrust = 1
+            self.thrust = 20
         else:
             self.thrust = 0

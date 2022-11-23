@@ -20,6 +20,7 @@ clock = pygame.time.Clock()
 level1 = Level(1,display)
 player1 = Player1(700, 100, 0, level1)
 player2 = Player2(100,700,0, level1)
+
 mixer.init()
 mixer.music.load('Assets/Enigma-Long-Version-Complete-Version.mp3')
 mixer.music.set_volume(0.9)
@@ -66,13 +67,13 @@ while running:
     display.fill('black')
     level1.level1()
 
-    if player1.position.x >= display_width-50 or player1.position.y >= display_height-50:
+    if player1.position.x >= display_width-50 or player1.position.y >= display_height-70:
         player1.stop()
-    if player1.position.x<= 0 or player1.position.y <=0:
+    if player1.position.x<= 0 or player1.position.y <=50:
         player1.stop()
-    if player2.position.x >= display_width - 50 or player2.position.y >= display_height-50:
+    if player2.position.x >= display_width - 50 or player2.position.y >= display_height-70:
         player2.stop()
-    if player2.position.x<= 0 or player2.position.y <= -50:
+    if player2.position.x<= 0 or player2.position.y <= 50:
         player2.stop()
 
     # draw with proper position and rotation
