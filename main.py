@@ -18,15 +18,12 @@ pygame.display.set_caption("HORRIFYING")
 clock = pygame.time.Clock()
 
 level1 = Level(1,display)
-
-player1 = Player1(800, 20, 0)
-player2 = Player2(100, 20, 0)
+player1 = Player1(800, 20, 0, level1)
+player2 = Player2(100, 20, 0, level1)
 
 level1.player1Ref = player1
 level1.player2Ref = player2
 
-player1.levelReference = level1
-player2.levelReference = level1
 
 mixer.init()
 mixer.music.load('Assets/Enigma-Long-Version-Complete-Version.mp3')
@@ -90,11 +87,11 @@ while running:
 
     if player1.position.x >= display_width-50 or player1.position.y >= display_height-70:
         player1.stop()
-    if player1.position.x<= 0 or player1.position.y <=50:
+    if player1.position.x<= 0 or player1.position.y <= 0:
         player1.stop()
     if player2.position.x >= display_width - 50 or player2.position.y >= display_height-70:
         player2.stop()
-    if player2.position.x<= 0 or player2.position.y <= 50:
+    if player2.position.x<= 0 or player2.position.y <= 0:
         player2.stop()
 
     # check collision:

@@ -31,7 +31,6 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.get_input()
-        #self.rect.x += self.direction.x * self.speed
         self.rotation += self.rotDir * self.rotSpeed
 
         if self.stopCom == False:
@@ -40,19 +39,12 @@ class Player(pygame.sprite.Sprite):
             self.acceleration.y = .005 * self.thrust * self.thrustAcceleration * math.sin((self.rotation-90) * PI/180.0)
 
         # accleration of gravity
-            for b in self.levelReference.bodiesList:
-                distVector = b.position - self.position
-                distance = distVector.length() #* 106301.667 # in meters
+        for b in self.levelReference.bodiesList:
+            distVector = b.position - self.position
+            distance = distVector.length() #* 106301.667 # in meters
 
-        accelVector = distVector.normalize() * (self.accelerationOfBody / math.pow(distance, .2))
-        self.acceleration += accelVector * .06
-
-
-    def changeImage(self):
-        if self.thrust != 0:
-            self.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/MovingSpaceShip.png'), 90), (50, 50))
-        else:
-            self.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/SpaceShip.png'), 90), (50, 50))
+            accelVector = distVector.normalize() * (self.accelerationOfBody / math.pow(distance, .2))
+            self.acceleration += accelVector * .06
 
             #M = 59721900000000000000000
             #accelerationOfBody = (GCONST * M) / (distance*distance) # m/s^2
@@ -60,21 +52,25 @@ class Player(pygame.sprite.Sprite):
             #accelVector = distVector.normalize() * accelerationOfBody
             #self.acceleration += accelVector * .06
 
-            self.velocity.x += self.acceleration.x
-            self.velocity.y += self.acceleration.y
+        self.velocity.x += self.acceleration.x
+        self.velocity.y += self.acceleration.y
 
-            if self.velocity.length() > 10:
-                self.velocity.scale_to_length(10)
+        if self.velocity.length() > 10:
+            self.velocity.scale_to_length(10)
 
-        #print(self.velocity.length())
+        self.velocity *= self.dragCoef
 
-            self.velocity *= self.dragCoef
-
-            self.position.x += self.velocity.x
-            self.position.y += self.velocity.y
+        self.position.x += self.velocity.x
+        self.position.y += self.velocity.y
 
         self.rect.topleft = self.position.x, self.position.y
 
+
+    def changeImage(self):
+        if self.thrust != 0:
+            self.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/MovingSpaceShip.png'), 90), (50, 50))
+        else:
+            self.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/SpaceShip.png'), 90), (50, 50))
 
     def stop(self):
         self.velocity = pygame.math.Vector2(0, 0)
@@ -89,8 +85,8 @@ class Player(pygame.sprite.Sprite):
 
 
 class Player1(Player):
-    def __init__(self,x,y,rot):
-        super().__init__(x,y,rot)
+    def __init__(self,x,y,rot, levelRef):
+        super().__init__(x,y,rot,levelRef)
     def get_input(self):
         keys = pygame.key.get_pressed()
 
@@ -117,8 +113,8 @@ class Player1(Player):
             print("collide player asdfasdfasdf")
 
 class Player2(Player):
-    def __init__(self,x,y,rot):
-        super().__init__(x,y,rot)
+    def __init__(self,x,y,rot,levelRef):
+        super().__init__(x,y,rot,levelRef)
 
 
     def get_input(self):
