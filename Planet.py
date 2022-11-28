@@ -8,6 +8,7 @@ class Planet(pygame.sprite.Sprite):
         self.screen = screen
         self.position = pos
         self.position = pos
+        self.mask = pygame.mask.from_surface(self.image)
     def display(self):
         self.screen.blit(self.image,self.rect)
     #def __init__(self,screen, pos):

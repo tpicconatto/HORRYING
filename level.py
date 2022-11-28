@@ -8,6 +8,9 @@ class Level():
         self.number = number
         self.screen = screen
         self.bodiesList = []
+        self.player1Ref = None
+        self.player2Ref = None
+
         if self.number == 1:
             self.level1()
 
