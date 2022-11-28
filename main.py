@@ -18,14 +18,17 @@ pygame.display.set_caption("HORRIFYING")
 clock = pygame.time.Clock()
 
 level1 = Level(1,display)
-player1 = Player1(700, 100, 0, level1)
-player2 = Player2(100,700,0, level1)
+player1 = Player1(800, 20, 0, level1)
+player2 = Player2(100,20,0, level1)
 
 mixer.init()
 mixer.music.load('Assets/Enigma-Long-Version-Complete-Version.mp3')
 mixer.music.set_volume(0.9)
 mixer.music.play()
 
+counter, text = 3, '3'.rjust(3)
+pygame.time.set_timer(pygame.USEREVENT, 1000)
+font = pygame.font.SysFont('Consolas', 30)
 #draws
 def drawObj(disp, image, topleft, angle):
     # idk how this works but it does
@@ -41,31 +44,42 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-#manages the control screen
-    while lookingatcontrol:
-        keys = pygame.key.get_pressed()
-        font = pygame.font.Font('freesansbold.ttf', 32)
-        textP1 = font.render('Player 1 control: arrows', True, 'green', 'blue')
-        textP2 = font.render('Player 2 control: WASD', True, 'green', 'blue')
-        textCon = font.render('Press any key to play', True, 'green', 'blue')
-        textRectP1 = textP1.get_rect()
-        textRectP2 = textP2.get_rect()
-        textRectCon = textCon.get_rect()
-        textRectP1.center = (display_width // 2, display_height // 2)
-        textRectP2.center = (display_width // 2, display_height // 2 +32)
-        textRectCon.center = (display_width // 2, display_height // 2 + 64)
-        display.fill('black')
-        display.blit(textP1, textRectP1)
-        display.blit(textP2, textRectP2)
-        display.blit(textCon, textRectCon)
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.KEYUP:
-                lookingatcontrol = False
+        if event.type == pygame.USEREVENT:
+            counter -= 1
+            text = str(counter).rjust(3) if counter > 0 else 'Go!'
+            if counter>0:
+                player1.stopComplete()
+                player2.stopComplete()
+            elif counter<0:
+                text=""
+                player1.stopCom = False
+                player2.stopCom = False
 
+#manages the control screen
+        while lookingatcontrol:
+            keys = pygame.key.get_pressed()
+            font = pygame.font.Font('freesansbold.ttf', 32)
+            textP1 = font.render('Player 1 control: arrows', True, 'green', 'blue')
+            textP2 = font.render('Player 2 control: WASD', True, 'green', 'blue')
+            textCon = font.render('Press any key to play', True, 'green', 'blue')
+            textRectP1 = textP1.get_rect()
+            textRectP2 = textP2.get_rect()
+            textRectCon = textCon.get_rect()
+            textRectP1.center = (display_width // 2, display_height // 2)
+            textRectP2.center = (display_width // 2, display_height // 2 +32)
+            textRectCon.center = (display_width // 2, display_height // 2 + 64)
+            display.fill('black')
+            display.blit(textP1, textRectP1)
+            display.blit(textP2, textRectP2)
+            display.blit(textCon, textRectCon)
+            pygame.display.update()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYUP:
+                    lookingatcontrol = False
 
     display.fill('black')
     level1.level1()
+    display.blit(font.render(text, True, 'white', (0, 0, 0)), (400, 400))
 
     if player1.position.x >= display_width-50 or player1.position.y >= display_height-70:
         player1.stop()
