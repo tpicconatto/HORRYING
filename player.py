@@ -46,11 +46,14 @@ class Player(pygame.sprite.Sprite):
 
             accelerationOfBody = 3
             accelVector = distVector.normalize() * (accelerationOfBody / math.pow(distance, .2))
-            print(accelVector)
             self.acceleration += accelVector * .06
 
 
-
+    def changeImage(self):
+        if self.thrust != 0:
+            self.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/MovingSpaceShip.png'), 90), (50, 50))
+        else:
+            self.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/SpaceShip.png'), 90), (50, 50))
 
             #M = 59721900000000000000000
             #accelerationOfBody = (GCONST * M) / (distance*distance) # m/s^2

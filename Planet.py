@@ -7,6 +7,7 @@ class Planet(pygame.sprite.Sprite):
         self.position = pygame.math.Vector2(pos.x, pos.y)
         self.screen = screen
         self.position = pos
+        self.position = pos
     def display(self):
         self.screen.blit(self.image,self.rect)
     #def __init__(self,screen, pos):
@@ -20,5 +21,3 @@ class Planet(pygame.sprite.Sprite):
 
     #def update(self,x_shift):
         #self.position.x += x_shift
-
-

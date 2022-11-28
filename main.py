@@ -13,7 +13,7 @@ display_width = 1200
 display_height = 800
 
 display = pygame.display.set_mode((display_width,display_height))
-pygame.display.set_caption("HORRIFYING")
+pygame.display.set_caption("HORRYING")
 
 clock = pygame.time.Clock()
 
@@ -75,6 +75,9 @@ while running:
         player2.stop()
     if player2.position.x<= 0 or player2.position.y <= 50:
         player2.stop()
+
+    player1.changeImage()
+    player2.changeImage()
 
     # draw with proper position and rotation
     drawObj(display, player1.image, player1.position, player1.rotation)
