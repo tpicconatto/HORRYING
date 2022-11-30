@@ -129,7 +129,9 @@ class Player1(Player):
                 if pygame.sprite.collide_mask(self, b) != None:
                     #return None
                     print(" ")
-                    #self.game_over()
+                    self.game_over()
+                    self.levelReference.player2Score += 1
+                    return True
 
             # only for p1:
             if self.levelReference.player2Ref.checkCollisionRunning == True:
@@ -137,8 +139,12 @@ class Player1(Player):
                     #print("collide player")
                     if self.velocity.magnitude() > self.levelReference.player2Ref.velocity.magnitude():
                         self.levelReference.player2Ref.game_over()
+                        self.levelReference.player1Score +=1
+                        return True
                     if self.velocity.magnitude() < self.levelReference.player2Ref.velocity.magnitude():
                         self.game_over()
+                        self.levelReference.player2Score +=1
+                        return True
 
 class Player2(Player):
     def __init__(self,x,y,rot,levelRef):
@@ -164,6 +170,7 @@ class Player2(Player):
         if self.checkCollisionRunning == True:
             for b in self.levelReference.bodiesList:
                 if pygame.sprite.collide_mask(self, b) != None:
-                    return None
                     #print(pygame.sprite.collide_mask(self, b))
-                    #self.game_over()
+                    self.game_over()
+                    self.levelReference.player1Score += 1
+                    return True

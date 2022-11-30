@@ -19,16 +19,15 @@ pygame.display.set_caption("HORRIFYING")
 
 clock = pygame.time.Clock()
 
-level1 = Level(1,display)
-player1 = Player1(50, 700, 0, level1)
+levelReference = Level(1,display)
+player1 = Player1(50, 700, 0, levelReference)
 player1.stopComplete()
-player2 = Player2(1150, 700, 0, level1)
+player2 = Player2(1150, 700, 0, levelReference)
 player2.stopComplete()
-
-level1.player1Ref = player1
-level1.player2Ref = player2
+levelReference.player1Ref = player1
+levelReference.player2Ref = player2
 explosion1 = Explosion(display, pygame.math.Vector2(600, 400))
-level1.explosionRef = explosion1
+levelReference.explosionRef = explosion1
 
 mixer.init()
 mixer.music.load('Assets/Enigma-Long-Version-Complete-Version.mp3')
@@ -45,7 +44,6 @@ def drawObj(disp, image, topleft, angle):
     new_rect = rotated_image.get_rect(center = image.get_rect(topleft = topleft).center)
     disp.blit(rotated_image, new_rect)
 
-level1 = Level(1,display)
 
 running = True
 lookingatcontrol = True
@@ -92,20 +90,21 @@ while running:
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP:
                     pos = pygame.mouse.get_pos()
+                    levelnum = 0
                     if pygame.Rect.collidepoint(textRectl1,pos):
-                        level = Level(1,display)
+                        levelnum = 1
                         findinglevel = False
                     if pygame.Rect.collidepoint(textRectl2, pos):
-                        level = Level(2, display)
+                        levelnum = 2
                         findinglevel = False
                     if pygame.Rect.collidepoint(textRectl3,pos):
-                        level = Level(3,display)
+                        levelnum =3
                         findinglevel = False
                     if pygame.Rect.collidepoint(textRectl4,pos):
-                        level = Level(4,display)
+                        levelnum = 4
                         findinglevel = False
                     if pygame.Rect.collidepoint(textRectl5,pos):
-                        level = Level(5,display)
+                        levelnum = 5
                         findinglevel = False
                     else:
                         continue
@@ -139,6 +138,16 @@ while running:
 
     display.fill('black')
     display.blit(font.render(text, True,'white', (0, 0, 0)), (600, 300))
+    level = Level(levelnum, display)
+    p1score = levelReference.player1Score
+    p2score = levelReference.player2Score
+    textScore = font.render(str(p1score)+" - "+str(p2score), True, 'white')
+    textRectScore = textScore.get_rect()
+    textRectScore.center = (display_width // 2, 50)
+    display.blit(textScore, textRectScore)
+
+
+
 
     if player1.position.x >= display_width-50 or player1.position.y >= display_height-70:
         player1.stop()
@@ -176,6 +185,20 @@ while running:
         explosion1.display()
     if player2.gameOver == True:
         explosion1.display()
+    if player1.gameOver == True or player2.gameOver == True:
+        player1.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/SpaceShip.png'), 90), (50, 50))
+        player2.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/SpaceShip.png'), 90), (50, 50))
+        player1.position = pygame.math.Vector2(50, 700)
+        player1.stopComplete()
+        player2.position = pygame.math.Vector2(1150, 700)
+        player2.stopComplete()
+        player1.gameOver = False
+        player2.gameOver = False
+        counter = 3
+        text = str(counter).rjust(3) if counter > 0 else 'Go!'
+        player1.checkCollisionRunning = True
+        player2.checkCollisionRunning = True
+
 
 
 
