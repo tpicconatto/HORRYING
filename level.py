@@ -11,6 +11,9 @@ class Level():
         self.player1Ref = None
         self.player2Ref = None
 
+        self.player1Score = 0
+        self.player2Score = 0
+
         if self.number == 1:
             self.level1()
 
@@ -35,3 +38,19 @@ class Level():
         # earth = Earth(self.screen,1100,700)
         # earth.display()
         # self.bodiesList.append(earth)
+
+
+
+
+
+
+    def Score(self, p):
+        if p == 1:
+            self.player1Score += 1
+        if p == 2:
+            self.player2Score += 1
+
+        if self.player1Score >= 5:
+            print("PLAYER 1 WINS")
+        elif self.player2Score >= 5:
+            print("PLAYER 2 WINS")
