@@ -11,6 +11,8 @@ class Level():
         self.player1Ref = None
         self.player2Ref = None
 
+        self.explosionRef = None
+
         self.player1Score = 0
         self.player2Score = 0
 
@@ -93,13 +95,6 @@ class Level():
         planet5 = Planet(self.screen, pygame.math.Vector2(400, 250), 'Assets/DesertPlanet.png')
         planet5.display()
         self.bodiesList.append(planet5)
-
-        # planet4 = Planet(self.screen, 1000, 500)
-        # planet4.display()
-        # earth = Earth(self.screen,1100,700)
-        # earth.display()
-        # self.bodiesList.append(earth)
-
 
 
 

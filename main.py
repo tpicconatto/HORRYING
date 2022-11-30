@@ -4,6 +4,7 @@ from player import Player1
 from player import Player2
 from level import Level
 from pygame import mixer
+from Explosion import Explosion
 import time
 # initialize the pygame module
 
@@ -26,7 +27,8 @@ player2.stopComplete()
 
 level1.player1Ref = player1
 level1.player2Ref = player2
-
+explosion1 = Explosion(display, pygame.math.Vector2(600, 400))
+level1.explosionRef = explosion1
 
 mixer.init()
 mixer.music.load('Assets/Enigma-Long-Version-Complete-Version.mp3')
@@ -42,30 +44,6 @@ def drawObj(disp, image, topleft, angle):
     rotated_image = pygame.transform.rotate(image, angle)
     new_rect = rotated_image.get_rect(center = image.get_rect(topleft = topleft).center)
     disp.blit(rotated_image, new_rect)
-
-exImg1 = 'Assets/Explosion1.png'
-exImg2 = 'Assets/Explosion2.png'
-exImg3 = 'Assets/Explosion3.png'
-exImg4 = 'Assets/Explosion4.png'
-exImg5 = 'Assets/Explosion5.png'
-exImg6 = 'Assets/Explosion6.png'
-exImg7 = 'Assets/Explosion7.png'
-exImg8 = 'Assets/Explosion8.png'
-exImg9 = 'Assets/Explosion9.png'
-exImg10 = 'Assets/Explosion10.png'
-
-explosionImg = [exImg1, exImg2, exImg3, exImg4, exImg5, exImg6, exImg7, exImg8, exImg9, exImg10]
-
-explosionRunning = True
-
-def explosion(player):
-    i = 0
-    explosionRunning = True
-    while i < len(explosionImg):  # go through the entire length of images from list
-        player.changeImage(explosionImg[i])
-        time.sleep(.03)  # delay of 0.03 seconds after displaying an image
-        i += 1
-    explosionRunning = False
 
 level1 = Level(1,display)
 
@@ -175,27 +153,31 @@ while running:
     player1.checkCollision()
     player2.checkCollision()
 
-    if player1.thrust != 0:
-        player1.changeImage('Assets/MovingSpaceShip.png')
+    if player1.gameOver == True:
+        player1.changeImage('Assets/transparent.png')
     else:
-        player1.changeImage('Assets/SpaceShip.png')
+        if player1.thrust != 0:
+            player1.changeImage('Assets/MovingSpaceShip.png')
+        else:
+            player1.changeImage('Assets/SpaceShip.png')
 
-    if player2.thrust != 0:
-        player2.changeImage('Assets/MovingSpaceShip.png')
+
+    if player2.gameOver == True:
+        player2.changeImage('Assets/transparent.png')
     else:
-        player2.changeImage('Assets/SpaceShip.png')
+        if player2.thrust != 0:
+            player2.changeImage('Assets/MovingSpaceShip.png')
+        else:
+            player2.changeImage('Assets/SpaceShip.png')
+
+
 
     if player1.gameOver == True:
-        explosion(player1)
-        player1.changeImage('Assets/transparent.png')
-        player1.gameOver = False
-        player1.checkCollisionRunning = False
+        explosion1.display()
     if player2.gameOver == True:
-        explosion(player2)
-        if(explosionRunning == False):
-            player2.changeImage('Assets/transparent.png')
-        player2.gameOver = False
-        player2.checkCollisionRunning = False
+        explosion1.display()
+
+
 
     # draw with proper position and rotation
     drawObj(display, player1.image, player1.position, player1.rotation)

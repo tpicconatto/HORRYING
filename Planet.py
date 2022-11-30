@@ -7,7 +7,6 @@ class Planet(pygame.sprite.Sprite):
         self.position = pygame.math.Vector2(pos.x, pos.y)
         self.screen = screen
         self.position = pos
-        self.position = pos
         self.mask = pygame.mask.from_surface(self.image)
     def display(self):
         self.screen.blit(self.image,self.rect)
