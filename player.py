@@ -39,12 +39,12 @@ class Player(pygame.sprite.Sprite):
             self.acceleration.y = .005 * self.thrust * self.thrustAcceleration * math.sin((self.rotation-90) * PI/180.0)
 
         # accleration of gravity
-        for b in self.levelReference.bodiesList:
-            distVector = b.position - self.position
-            distance = distVector.length() #* 106301.667 # in meters
+            for b in self.levelReference.bodiesList:
+                distVector = b.position - self.position
+                distance = distVector.length() #* 106301.667 # in meters
 
-            accelVector = distVector.normalize() * (self.accelerationOfBody / math.pow(distance, .2))
-            self.acceleration += accelVector * .06
+                accelVector = distVector.normalize() * (self.accelerationOfBody / math.pow(distance, .2))
+                self.acceleration += accelVector * .06
 
             #M = 59721900000000000000000
             #accelerationOfBody = (GCONST * M) / (distance*distance) # m/s^2
@@ -52,18 +52,18 @@ class Player(pygame.sprite.Sprite):
             #accelVector = distVector.normalize() * accelerationOfBody
             #self.acceleration += accelVector * .06
 
-        self.velocity.x += self.acceleration.x
-        self.velocity.y += self.acceleration.y
+            self.velocity.x += self.acceleration.x
+            self.velocity.y += self.acceleration.y
 
-        if self.velocity.length() > 10:
-            self.velocity.scale_to_length(10)
+            if self.velocity.length() > 10:
+                self.velocity.scale_to_length(10)
 
-        self.velocity *= self.dragCoef
+            self.velocity *= self.dragCoef
 
-        self.position.x += self.velocity.x
-        self.position.y += self.velocity.y
+            self.position.x += self.velocity.x
+            self.position.y += self.velocity.y
 
-        self.rect.topleft = self.position.x, self.position.y
+            self.rect.topleft = self.position.x, self.position.y
 
 
     def changeImage(self):
@@ -79,8 +79,6 @@ class Player(pygame.sprite.Sprite):
         self.velocity = pygame.math.Vector2(0, 0)
         self.stopCom = True
 
-    def setGravity(self, num):
-        self.accelerationOfBody = num
 
 
 
