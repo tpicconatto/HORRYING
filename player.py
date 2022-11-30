@@ -28,6 +28,8 @@ class Player(pygame.sprite.Sprite):
         self.dragCoef = 1
         self.accelerationOfBody = 3
         self.stopCom = False
+        self.gameOver = False
+        self.checkCollisionRunning = True
 
     def update(self):
         self.get_input()
@@ -66,11 +68,9 @@ class Player(pygame.sprite.Sprite):
         self.rect.topleft = self.position.x, self.position.y
 
 
-    def changeImage(self):
-        if self.thrust != 0:
-            self.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/MovingSpaceShip.png'), 90), (50, 50))
-        else:
-            self.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/SpaceShip.png'), 90), (50, 50))
+    def changeImage(self, image):
+        self.image = pygame.transform.scale(
+            pygame.transform.rotate(pygame.image.load(image), 90), (50, 50))
 
     def stop(self):
         self.velocity = pygame.math.Vector2(0, 0)
@@ -81,6 +81,17 @@ class Player(pygame.sprite.Sprite):
 
     def setGravity(self, num):
         self.accelerationOfBody = num
+
+    def game_over(self):
+        self.levelReference.player1Ref.velocity = pygame.math.Vector2(0, 0)
+        self.levelReference.player1Ref.thrustAcceleration = 0
+        self.levelReference.player1Ref.accelerationOfBody = 0
+        self.levelReference.player1Ref.acceleration = pygame.math.Vector2(0, 0)
+        self.levelReference.player2Ref.velocity = pygame.math.Vector2(0, 0)
+        self.levelReference.player2Ref.thrustAcceleration = 0
+        self.levelReference.player2Ref.accelerationOfBody = 0
+        self.levelReference.player2Ref.acceleration = pygame.math.Vector2(0, 0)
+        self.gameOver = True
 
 
 
@@ -103,14 +114,21 @@ class Player1(Player):
             self.thrust = 0
 
     def checkCollision(self):
-        for b in self.levelReference.bodiesList:
-            if pygame.sprite.collide_mask(self, b) != None:
-                print(pygame.sprite.collide_mask(self, b))
+        if self.checkCollisionRunning == True:
+            for b in self.levelReference.bodiesList:
+                if pygame.sprite.collide_mask(self, b) != None:
+                    print(pygame.sprite.collide_mask(self, b))
+                    #self.game_over()
+
 
 
         # only for p1:
-        if pygame.sprite.collide_mask(self, self.levelReference.player2Ref) != None:
-            print("collide player asdfasdfasdf")
+            if pygame.sprite.collide_mask(self, self.levelReference.player2Ref) != None:
+                print("collide player asdfasdfasdf")
+                if self.velocity.magnitude() > self.levelReference.player2Ref.velocity.magnitude():
+                    self.levelReference.player2Ref.game_over()
+                if self.velocity.magnitude() < self.levelReference.player2Ref.velocity.magnitude():
+                    self.game_over()
 
 class Player2(Player):
     def __init__(self,x,y,rot,levelRef):
@@ -133,6 +151,8 @@ class Player2(Player):
             self.thrust = 0
 
     def checkCollision(self):
-        for b in self.levelReference.bodiesList:
-            if pygame.sprite.collide_mask(self, b) != None:
-                print(pygame.sprite.collide_mask(self, b))
+        if self.checkCollisionRunning == True:
+            for b in self.levelReference.bodiesList:
+                if pygame.sprite.collide_mask(self, b) != None:
+                    print(pygame.sprite.collide_mask(self, b))
+                    #self.game_over()
