@@ -111,3 +111,7 @@ class Level():
             print("PLAYER 1 WINS")
         elif self.player2Score >= 5:
             print("PLAYER 2 WINS")
+
+    def display(self):
+        for b in self.bodiesList:
+            b.display()

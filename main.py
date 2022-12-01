@@ -93,18 +93,58 @@ while running:
                     levelnum = 0
                     if pygame.Rect.collidepoint(textRectl1,pos):
                         levelnum = 1
+                        levelReference = Level(levelnum,display)
+                        player1.levelReference = levelReference
+                        player1.stopComplete()
+                        player2.levelReference = levelReference
+                        player2.stopComplete()
+                        levelReference.player1Ref = player1
+                        levelReference.player2Ref = player2
+                        levelReference.explosionRef = explosion1
                         findinglevel = False
                     if pygame.Rect.collidepoint(textRectl2, pos):
                         levelnum = 2
+                        levelReference = Level(levelnum, display)
+                        player1.levelReference = levelReference
+                        player1.stopComplete()
+                        player2.levelReference = levelReference
+                        player2.stopComplete()
+                        levelReference.player1Ref = player1
+                        levelReference.player2Ref = player2
+                        levelReference.explosionRef = explosion1
                         findinglevel = False
                     if pygame.Rect.collidepoint(textRectl3,pos):
                         levelnum =3
+                        levelReference = Level(levelnum, display)
+                        player1.levelReference = levelReference
+                        player1.stopComplete()
+                        player2.levelReference = levelReference
+                        player2.stopComplete()
+                        levelReference.player1Ref = player1
+                        levelReference.player2Ref = player2
+                        levelReference.explosionRef = explosion1
                         findinglevel = False
                     if pygame.Rect.collidepoint(textRectl4,pos):
                         levelnum = 4
+                        levelReference = Level(levelnum, display)
+                        player1.levelReference = levelReference
+                        player1.stopComplete()
+                        player2.levelReference = levelReference
+                        player2.stopComplete()
+                        levelReference.player1Ref = player1
+                        levelReference.player2Ref = player2
+                        levelReference.explosionRef = explosion1
                         findinglevel = False
                     if pygame.Rect.collidepoint(textRectl5,pos):
                         levelnum = 5
+                        levelReference = Level(levelnum, display)
+                        player1.levelReference = levelReference
+                        player1.stopComplete()
+                        player2.levelReference = levelReference
+                        player2.stopComplete()
+                        levelReference.player1Ref = player1
+                        levelReference.player2Ref = player2
+                        levelReference.explosionRef = explosion1
                         findinglevel = False
                     else:
                         continue
@@ -138,7 +178,7 @@ while running:
 
     display.fill('black')
     display.blit(font.render(text, True,'white', (0, 0, 0)), (600, 300))
-    level = Level(levelnum, display)
+    levelReference.display()
     p1score = levelReference.player1Score
     p2score = levelReference.player2Score
     textScore = font.render(str(p1score)+" - "+str(p2score), True, 'white')
