@@ -1,13 +1,14 @@
 import pygame
 
 class Explosion(pygame.sprite.Sprite):
+
     def __init__(self,screen,pos):
         self.image = pygame.transform.scale(pygame.image.load("Assets/Explosion5.png"), (60, 60))
         self.rect = self.image.get_rect(center=(pos.x,pos.y))
         self.position = pygame.math.Vector2(pos.x, pos.y)
         self.screen = screen
         self.position = pos
-
+        self.counter = 10
         self.imageIndex = 0
 
         self.exImg1 = pygame.image.load('Assets/Explosion1.png')

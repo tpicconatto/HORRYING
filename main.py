@@ -63,6 +63,7 @@ while running:
                 player1.stopCom = False
                 player2.stopCom = False
         while(findinglevel):
+            display.fill('black')
             keys = pygame.key.get_pressed()
             font = pygame.font.Font('freesansbold.ttf', 32)
             textl1 = font.render('Level 1', True, 'green', 'blue')
@@ -102,6 +103,7 @@ while running:
                         levelReference.player2Ref = player2
                         levelReference.explosionRef = explosion1
                         findinglevel = False
+                        lookingatcontrol = True
                     if pygame.Rect.collidepoint(textRectl2, pos):
                         levelnum = 2
                         levelReference = Level(levelnum, display)
@@ -113,6 +115,7 @@ while running:
                         levelReference.player2Ref = player2
                         levelReference.explosionRef = explosion1
                         findinglevel = False
+                        lookingatcontrol = True
                     if pygame.Rect.collidepoint(textRectl3,pos):
                         levelnum =3
                         levelReference = Level(levelnum, display)
@@ -124,6 +127,7 @@ while running:
                         levelReference.player2Ref = player2
                         levelReference.explosionRef = explosion1
                         findinglevel = False
+                        lookingatcontrol = True
                     if pygame.Rect.collidepoint(textRectl4,pos):
                         levelnum = 4
                         levelReference = Level(levelnum, display)
@@ -135,6 +139,7 @@ while running:
                         levelReference.player2Ref = player2
                         levelReference.explosionRef = explosion1
                         findinglevel = False
+                        lookingatcontrol = True
                     if pygame.Rect.collidepoint(textRectl5,pos):
                         levelnum = 5
                         levelReference = Level(levelnum, display)
@@ -146,6 +151,7 @@ while running:
                         levelReference.player2Ref = player2
                         levelReference.explosionRef = explosion1
                         findinglevel = False
+                        lookingatcontrol = True
                     else:
                         continue
 
@@ -223,8 +229,15 @@ while running:
 
     if player1.gameOver == True:
         explosion1.display()
+
     if player2.gameOver == True:
         explosion1.display()
+
+
+    drawObj(display, player1.image, player1.position, player1.rotation)
+    drawObj(display, player2.image, player2.position, player2.rotation)
+    player1.update()
+    player2.update()
     if player1.gameOver == True or player2.gameOver == True:
         player1 = Player1(50, 700, 0, levelReference)
         player1.stopComplete()
@@ -239,14 +252,49 @@ while running:
         player1.checkCollisionRunning = True
         player2.checkCollisionRunning = True
 
+    if levelReference.player1Score >= 5 or levelReference.player2Score >=5:
+        levelEnded = True
+        while (levelEnded):
+            keys = pygame.key.get_pressed()
+            font = pygame.font.Font('freesansbold.ttf', 32)
+            winfont = pygame.font.Font('freesansbold.ttf', 50)
+            if levelReference.player1Score > levelReference.player2Score:
+                textWin = winfont.render('Player 1 Wins', True, 'green', 'blue')
+            else:
+                textWin = textWin = winfont.render('Player 2 Wins', True, 'green', 'blue')
+            textPlayAgain = font.render('Play New Level', True, 'green', 'blue')
+            textQuit = font.render('Quit', True, 'green', 'blue')
+            textRectWin = textWin.get_rect()
+            textRectPlayAgain = textPlayAgain.get_rect()
+            textRectQuit = textQuit.get_rect()
+            textRectWin.center = (display_width // 2, display_height // 2)
+            textRectPlayAgain.center = (display_width // 2 - 90, display_height // 2 + 70)
+            textRectQuit.center = (display_width // 2 + 90, display_height // 2 + 70)
+            display.fill('black')
+            display.blit(textWin, textRectWin)
+            display.blit(textPlayAgain, textRectPlayAgain)
+            display.blit(textQuit, textRectQuit)
+            pygame.display.update()
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONUP:
+                    pos = pygame.mouse.get_pos()
+                    print("mouse pushes")
+                    if pygame.Rect.collidepoint(textRectPlayAgain, pos):
+                        print("hit play again")
+                        levelReference.player1Score = 0
+                        levelReference.player2Score = 0
+                        findinglevel = True
+                        levelEnded = False
+                        display.fill('black')
+                    if pygame.Rect.collidepoint(textRectQuit, pos):
+                        running = False
+                        levelEnded = False
+                    else:
+                        continue
 
 
 
     # draw with proper position and rotation
-    drawObj(display, player1.image, player1.position, player1.rotation)
-    drawObj(display, player2.image, player2.position, player2.rotation)
-    player1.update()
-    player2.update()
 
     pygame.display.update()
 
