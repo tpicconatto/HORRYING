@@ -1,0 +1,11 @@
+We have created a game entitled Horrying 
+First users select a level 1-5, with each level including one more planet
+Users then control a space ship either using the arrow keys or WASD
+A user wins once they have scored 5 points
+A user can score a point by colliding with the other player at a faster velocity than the other player
+A user can score a point if the other player collides with a planet
+Once five points is reached will display the winner and allow the user to pick another level
+
+*Note about main.py/explosion:
+If we were to continue working on the project we would have liked to implement an explosion animation.
+All progress made towards that aim is commented out, but left in in case anyone else would like to attempt to implement it
