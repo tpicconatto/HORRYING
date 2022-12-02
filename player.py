@@ -170,7 +170,6 @@ class Player2(Player):
         if self.checkCollisionRunning == True:
             for b in self.levelReference.bodiesList:
                 if pygame.sprite.collide_mask(self, b) != None:
-                    #print(pygame.sprite.collide_mask(self, b))
                     self.game_over()
                     self.levelReference.player1Score += 1
                     return True

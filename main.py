@@ -226,12 +226,12 @@ while running:
     if player2.gameOver == True:
         explosion1.display()
     if player1.gameOver == True or player2.gameOver == True:
-        player1.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/SpaceShip.png'), 90), (50, 50))
-        player2.image = pygame.transform.scale(pygame.transform.rotate(pygame.image.load('Assets/SpaceShip.png'), 90), (50, 50))
-        player1.position = pygame.math.Vector2(50, 700)
+        player1 = Player1(50, 700, 0, levelReference)
         player1.stopComplete()
-        player2.position = pygame.math.Vector2(1150, 700)
+        player2 = Player2(1150, 700, 0, levelReference)
         player2.stopComplete()
+        levelReference.player1Ref = player1
+        levelReference.player2Ref = player2
         player1.gameOver = False
         player2.gameOver = False
         counter = 3
