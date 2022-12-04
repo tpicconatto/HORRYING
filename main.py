@@ -33,9 +33,9 @@ clock = pygame.time.Clock()
 #********
 # Creates players and level
 levelReference = Level(1,display)
-player1 = Player1(50, 700, 0, levelReference)
+player1 = Player1(1150, 700, 0, levelReference)
 player1.stopComplete()
-player2 = Player2(1150, 700, 0, levelReference)
+player2 = Player2(50, 700, 0, levelReference)
 player2.stopComplete()
 levelReference.player1Ref = player1
 levelReference.player2Ref = player2
@@ -189,8 +189,8 @@ while running:
         while lookingAtControl: #while reading controls
             keys = pygame.key.get_pressed()
             font = pygame.font.Font('freesansbold.ttf', 32)
-            textP1 = font.render('Player 1 control(left): arrows', True, 'green', 'blue')
-            textP2 = font.render('Player 2 control(right): WASD', True, 'green', 'blue')
+            textP1 = font.render('Player 1 control(right): arrows', True, 'green', 'blue')
+            textP2 = font.render('Player 2 control(left): WASD', True, 'green', 'blue')
             textCon = font.render('Press any key to Play', True, 'green', 'blue')
             textInstructions = font.render('Avoid Planets and Other Players', True, 'green', 'blue')
             textRectP1 = textP1.get_rect()
@@ -284,9 +284,9 @@ while running:
     #**********
     # Resets the players to starting point after they collide
     if (player1.gameOver == True or player2.gameOver == True) and levelReference.explosionRef.imageIndex>=10: #somebody collided with something and exploded
-        player1 = Player1(50, 700, 0, levelReference)
+        player1 = Player1(1150, 700, 0, levelReference)
         player1.stopComplete()
-        player2 = Player2(1150, 700, 0, levelReference)
+        player2 = Player2(50, 700, 0, levelReference)
         player2.stopComplete()
         levelReference.player1Ref = player1
         levelReference.player2Ref = player2
@@ -333,7 +333,7 @@ while running:
                         levelReference.player2Score = 0
                         findingLevel = True
                         levelEnded = False
-                        display.fill('black')
+                        display.fill('grey')
                     if pygame.Rect.collidepoint(textRectQuit, pos): #user chose to quit. quits
                         running = False
                         levelEnded = False

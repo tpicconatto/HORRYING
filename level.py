@@ -32,9 +32,8 @@ class Level(): #Creates the level
 
 
     def level1(self): #adds level 1 planets to bodieslist
-        return True
-        #planet1 = Planet(self.screen, pygame.math.Vector2(600, 400), 'Assets/PurplePlanet.png')
-        #self.bodiesList.append(planet1)
+        planet1 = Planet(self.screen, pygame.math.Vector2(600, 400), 'Assets/PurplePlanet.png')
+        self.bodiesList.append(planet1)
 
     def level2(self): #adds level 2 planets to bodieslist
         planet1 = Planet(self.screen, pygame.math.Vector2(300, 500), 'Assets/PurplePlanet.png')
