@@ -6,6 +6,5 @@ A user can score a point by colliding with the other player at a faster velocity
 A user can score a point if the other player collides with a planet
 Once five points is reached will display the winner and allow the user to pick another level
 
-*Note about main.py/explosion:
-If we were to continue working on the project we would have liked to implement an explosion animation.
-All progress made towards that aim is commented out, but left in in case anyone else would like to attempt to implement it
+#Note about commenting
+Large sections of code are bracket together with ****** to hopefullly make the code easy to read
