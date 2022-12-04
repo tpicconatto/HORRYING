@@ -1,8 +1,8 @@
 import pygame
 
-class Explosion(pygame.sprite.Sprite):
+class Explosion(pygame.sprite.Sprite): #constructions the explosions
 
-    def __init__(self,screen,pos):
+    def __init__(self,screen,pos): #imports all the images needed in proper location
         self.image = pygame.transform.scale(pygame.image.load("Assets/Explosion5.png"), (60, 60))
         self.rect = self.image.get_rect(center=(pos.x,pos.y))
         self.position = pygame.math.Vector2(pos.x, pos.y)
@@ -26,10 +26,10 @@ class Explosion(pygame.sprite.Sprite):
                                   self.exImg8, self.exImg9, self.exImg10]
 
 
-    def display(self):
-        if (self.imageIndex >= 10):
+    def display(self): #displays the images
+        if (self.imageIndex >= 10): #if it has gone through all the images make it transparent
             self.image = pygame.image.load("Assets/transparent.png")
-        else:
+        else: #otherwise filter through explosion animation
             self.image = self.explosionImgArray[self.imageIndex]
             self.imageIndex += 1
         self.rect.topleft = self.position.x, self.position.y
