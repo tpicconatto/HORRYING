@@ -219,7 +219,7 @@ while running:
     levelReference.display()
     p1score = levelReference.player1Score
     p2score = levelReference.player2Score
-    textScore = font.render(str(p1score)+" - "+str(p2score), True, 'white')
+    textScore = font.render(str(p2score)+" - "+str(p1score), True, 'white')
     textRectScore = textScore.get_rect()
     textRectScore.center = (display_width // 2, 50)
     display.blit(textScore, textRectScore)
@@ -284,6 +284,7 @@ while running:
     #**********
     # Resets the players to starting point after they collide
     if (player1.gameOver == True or player2.gameOver == True) and levelReference.explosionRef.imageIndex>=10: #somebody collided with something and exploded
+        mixer.music.play()
         player1 = Player1(1150, 700, 0, levelReference)
         player1.stopComplete()
         player2 = Player2(50, 700, 0, levelReference)
